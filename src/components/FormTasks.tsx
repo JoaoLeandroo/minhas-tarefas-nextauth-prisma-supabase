@@ -3,7 +3,6 @@ import { FormEvent } from 'react';
 import { Button } from './ui/button';
 import { RegisterTask } from '@/lib/server-actions';
 import { useState } from 'react';
-import { redirect } from 'next/navigation';
 
 interface FormTasksProps {
   id: string;
@@ -24,29 +23,29 @@ const FormTasks = ({ id }: FormTasksProps) => {
       title: title,
       content: content,
     };
-    
+
+    alert('Tarefa criada com sucesso!');
     RegisterTask(data);
-    redirect('/dashboard/tasks')
-    return
+    return;
   };
   return (
-      <form className="flex gap-y-4 flex-col mt-10" onSubmit={newRegisterTask}>
-        <input
-          type="text"
-          className="h-11 p-2 mt-2 bg-gray-100 rounded border border-zinc-200"
-          placeholder="Digite aqui o titulo da tarefa"
-          onChange={(e) => setTtitle(e.target.value)}
-        />
-        <input
-          type="text"
-          className="h-11 p-2 mt-2 bg-gray-100 rounded border border-zinc-200"
-          placeholder="Digite aqui a descrição da tarefa"
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <Button type="submit" className="h-11">
-          Enviar Tarefa
-        </Button>
-      </form>
+    <form className="flex gap-y-4 flex-col mt-10" onSubmit={newRegisterTask}>
+      <input
+        type="text"
+        className="h-11 p-2 mt-2 bg-gray-100 rounded border border-zinc-200"
+        placeholder="Digite aqui o titulo da tarefa"
+        onChange={(e) => setTtitle(e.target.value)}
+      />
+      <input
+        type="text"
+        className="h-11 p-2 mt-2 bg-gray-100 rounded border border-zinc-200"
+        placeholder="Digite aqui a descrição da tarefa"
+        onChange={(e) => setContent(e.target.value)}
+      />
+      <Button type="submit" className="h-11">
+        Enviar Tarefa
+      </Button>
+    </form>
   );
 };
 
